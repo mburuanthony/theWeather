@@ -5,12 +5,22 @@ import { ImagesContext } from "../ImagesContex";
 import "../Assets/Styles/Today.css";
 import bgImage from "../Assets/Images/Cloud-background.png";
 
-function Today({ setMetData, locationData, todayData }) {
+function Today({
+  setMetData,
+  locationData,
+  todayData,
+  setTodayData,
+  setLocationData,
+}) {
   const Images = useContext(ImagesContext);
 
   return (
     <div className="today">
-      <Search setMetData={setMetData} />
+      <Search
+        setMetData={setMetData}
+        setTodayData={setTodayData}
+        setLocationData={setLocationData}
+      />
 
       <div
         className="background"

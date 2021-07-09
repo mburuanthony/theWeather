@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "../Assets/Styles/Search.css";
 
-function Search({ setMetData }) {
+function Search({ setMetData, setTodayData, setLocationData }) {
   const showSelect = () => {
     document.querySelector(".search_box").style.display = "block";
   };
@@ -16,7 +16,7 @@ function Search({ setMetData }) {
   const searchLocation = () => {
     setSearch("");
     document.querySelector(".search_box").style.display = "none";
- 
+
     const Xhr = new XMLHttpRequest();
     Xhr.open(
       "GET",
@@ -27,6 +27,7 @@ function Search({ setMetData }) {
       if (this.status === 200) {
         const location_found = JSON.parse(this.responseText);
         const woeid = location_found[0].woeid;
+        setLocationData(location_found[0]);
 
         const reQuest = new XMLHttpRequest();
         reQuest.open(
@@ -38,6 +39,7 @@ function Search({ setMetData }) {
           if (this.status === 200) {
             const consolidated_data = JSON.parse(this.response);
             setMetData(consolidated_data.consolidated_weather);
+            setTodayData(consolidated_data.consolidated_weather[0]);
           }
         };
         reQuest.send();

@@ -52,8 +52,10 @@ function App() {
       <ImagesContext.Provider value={images}>
         <Today
           locationData={locationData}
+          setLocationData={setLocationData}
           setMetData={setMetData}
           todayData={todayData}
+          setTodayData={setTodayData}
         />
         <Forecast metData={metData} todayData={todayData} />
       </ImagesContext.Provider>
