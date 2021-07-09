@@ -1,0 +1,109 @@
+@media (max-width: 576px) {
+  .forecast {
+    position: absolute;
+    top: 800px;
+    left: 0;
+  }
+}
+
+.forecast {
+  position: absolute;
+  top: 0;
+  left: 460px;
+  width: calc(100% - 460px);
+  height: 100vh;
+  background: #100e1d;
+  overflow: auto;
+}
+
+.week,
+.highlights {
+  margin: 0 154px;
+}
+
+.met_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 122px;
+  height: 177px;
+  background: #1e213a;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  margin: 15px 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.week {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.week img {
+  margin: 0;
+  width: 60px;
+  height: 100%;
+}
+
+.temp {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#todayData {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wind,
+.humidity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 328px;
+  height: 204px;
+  background: #1e213a;
+  margin: 20px 0;
+  padding: 10px 0;
+}
+
+.visibility,
+.air_preesure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 328px;
+  height: 160px;
+  background: #1e213a;
+  margin: 20px 0;
+}
+
+progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 280px;
+  height: 8px;
+}
+
+progress[value]::-webkit-progress-bar {
+  background-color: #e7e7eb;
+  border-radius: 80px;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: #ffec65;
+  border-radius: 80px;
+}
