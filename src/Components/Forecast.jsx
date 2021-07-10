@@ -7,8 +7,27 @@ function Forecast({ metData, todayData }) {
   const Images = useContext(ImagesContext);
   const week_data = metData.slice(1);
 
+  const showCelcius = () => {
+    document.querySelector(".farh").style.display = "none";
+    document.querySelector(".celcius").style.display = "flex";
+  };
+
+  const showFarh = () => {
+    document.querySelector(".farh").style.display = "flex";
+    document.querySelector(".celcius").style.display = "none";
+  };
+
   return (
     <div className="forecast">
+      <div className="converters">
+        <button type="button" id="deg_celcius" onClick={showCelcius}>
+          <sup>O</sup>C
+        </button>
+        <button type="button" id="deg_farh" onClick={showFarh}>
+          <sup>O</sup>F
+        </button>
+      </div>
+
       <div className="week">
         {week_data.map((data) => (
           <div className="met_data" key={data.id}>
@@ -40,18 +59,34 @@ function Forecast({ metData, todayData }) {
               />
             </div>
             <div className="temp">
-              <p style={{ color: "#E7E7EB" }}>
-                {Math.round(data.max_temp)}
-                <span>
-                  <sup>O</sup>C
-                </span>
-              </p>
-              <p style={{ color: "#A09FB1" }}>
-                {Math.round(data.min_temp)}
-                <span>
-                  <sup>O</sup>C
-                </span>
-              </p>
+              <div className="farh" style={{ display: "none" }}>
+                <p style={{ color: "#E7E7EB" }}>
+                  {Math.round(Math.round(data.max_temp) * (9 / 5) + 32)}
+                  <span>
+                    <sup>O</sup>F
+                  </span>
+                </p>
+                <p style={{ color: "#A09FB1" }}>
+                  {Math.round(Math.round(data.min_temp) * (9 / 5) + 32)}
+                  <span>
+                    <sup>O</sup>F
+                  </span>
+                </p>
+              </div>
+              <div className="celcius">
+                <p style={{ color: "#E7E7EB" }}>
+                  {Math.round(data.max_temp)}
+                  <span>
+                    <sup>O</sup>C
+                  </span>
+                </p>
+                <p style={{ color: "#A09FB1" }}>
+                  {Math.round(data.min_temp)}
+                  <span>
+                    <sup>O</sup>C
+                  </span>
+                </p>
+              </div>
             </div>
           </div>
         ))}

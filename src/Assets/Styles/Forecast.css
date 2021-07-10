@@ -37,6 +37,36 @@
   text-align: center;
 }
 
+.converters {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 154px;
+  width: fit-content;
+  height: fit-content;
+}
+
+.converters :nth-child(1) {
+  background: #e7e7eb;
+  color: #110e3c;
+}
+
+.converters :nth-child(2) {
+  background: #585676;
+  color: #e7e7eb;
+}
+
+.converters button {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50px;
+  margin: 0 20px 0 0;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .week {
   display: flex;
   flex-direction: row;
@@ -52,6 +82,14 @@
 }
 
 .temp {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.celcius,
+.farh {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
