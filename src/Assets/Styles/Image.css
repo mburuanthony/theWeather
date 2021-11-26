@@ -1,0 +1,8 @@
+.weatherImage {
+  margin: 0 auto;
+}
+
+.weatherImage img {
+  width: 100%;
+  height: 100%;
+}

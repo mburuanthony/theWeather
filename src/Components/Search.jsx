@@ -1,126 +1,84 @@
-import React, { useState } from "react";
+import { useState, useRef } from "react";
+import { colors } from "../Assets/colors";
+import "../Assets/Styles/search.css";
+import axios from "axios";
 
-import "../Assets/Styles/Search.css";
+function Search(props) {
+  const { setLocationTitle, setTodayData, setMetData } = props;
+  const { btnBackground, boxShadow, light } = colors;
 
-function Search({ setMetData, setTodayData, setLocationData }) {
-  const showSelect = () => {
-    document.querySelector(".search_box").style.display = "block";
-  };
+  const [searchVal, setSearchVal] = useState("");
+  const [locationWoeid, setLocationWoeid] = useState(44418);
+  const formRef = useRef(null);
 
-  const hideSelect = () => {
-    document.querySelector(".search_box").style.display = "none";
-  };
+  const submitSearch = (e) => {
+    e.preventDefault();
 
-  const [search, setSearch] = useState("");
+    // get WOEID
+    axios
+      .get(
+        `https://www.metaweather.com/api/location/search/?query=${searchVal}`
+      )
+      .then((res) => {
+        setLocationTitle(res?.data[0]?.title);
+        setLocationWoeid(res?.data[0]?.woeid);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-  const searchLocation = () => {
-    setSearch("");
-    document.querySelector(".search_box").style.display = "none";
-
-    const Xhr = new XMLHttpRequest();
-    Xhr.open(
-      "GET",
-      `https://cors-proxy-kelvin.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${search}`,
-      true
-    );
-    Xhr.onload = function () {
-      if (this.status === 200) {
-        const location_found = JSON.parse(this.responseText);
-        const woeid = location_found[0].woeid;
-        setLocationData(location_found[0]);
-
-        const reQuest = new XMLHttpRequest();
-        reQuest.open(
-          "GET",
-          `https://cors-proxy-kelvin.herokuapp.com/https://www.metaweather.com/api/location/${woeid}/`,
-          true
-        );
-        reQuest.onload = function () {
-          if (this.status === 200) {
-            const consolidated_data = JSON.parse(this.response);
-            setMetData(consolidated_data.consolidated_weather);
-            setTodayData(consolidated_data.consolidated_weather[0]);
-          }
-        };
-        reQuest.send();
-      }
-    };
-    Xhr.send();
+    // get location weather data... set today data... set met data
+    axios
+      .get(`https://www.metaweather.com/api/location/${locationWoeid}/`)
+      .then((res) => {
+        setMetData(res?.data?.consolidated_weather);
+        setTodayData(res?.data?.consolidated_weather[0]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div>
-      <div className="click" onClick={showSelect}>
-        <button type="button" className="btn">
-          Search for places
+    <div className="search_location">
+      <div className="search_top">
+        <button
+          style={{ background: btnBackground, boxShadow: boxShadow }}
+          onClick={() => (formRef.current.style.display = "block")}
+        >
+          Search Location
         </button>
-        <button type="button" className="icon">
-          <i className="fas fa-search-location"></i>
-        </button>
-      </div>
-
-      <div className="search_box">
-        <p
+        <span
+          className="material-icons"
           style={{
-            float: "right",
-            margin: "10px 25px",
-            fontSize: "20px",
+            padding: "4px",
+            border: 0,
+            borderRadius: 500,
+            boxShadow: boxShadow,
+            background: btnBackground,
+            color: "#fff",
             cursor: "pointer",
           }}
-          onClick={hideSelect}
+          onClick={() => (formRef.current.style.display = "block")}
         >
-          <i className="fas fa-times"></i>
-        </p>
-
-        <form>
-          <div
-            style={{
-              border: "1px solid #E7E7EB",
-              width: "268px",
-              height: "48px",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-around",
-            }}
-          >
-            <i
-              className="fas fa-search"
-              style={{ color: "#616475", fontSize: "20px" }}
-            ></i>
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search location"
-            />
-          </div>
-          <button type="button" onClick={searchLocation}>
-            SEARCH
-          </button>
-        </form>
-
-        <div className="select">
-          <p onClick={() => setSearch("london")}>
-            London
-            <span>
-              <i className="fas fa-chevron-right"></i>
-            </span>
-          </p>
-          <p onClick={() => setSearch("barcelona")}>
-            Barcelona
-            <span>
-              <i className="fas fa-chevron-right"></i>
-            </span>
-          </p>
-          <p onClick={() => setSearch("long beach")}>
-            Long Beach
-            <span>
-              <i className="fas fa-chevron-right"></i>
-            </span>
-          </p>
-        </div>
+          my_location
+        </span>
       </div>
+
+      <form style={{ background: light }} ref={formRef} onSubmit={submitSearch}>
+        <span onClick={() => (formRef.current.style.display = "none")}>
+          &times;
+        </span>
+        <input
+          type="text"
+          placeholder="Search location"
+          value={searchVal}
+          onChange={(e) => setSearchVal(e.target.value)}
+        />
+        <button type="submit" onClick={submitSearch}>
+          Search
+        </button>
+      </form>
     </div>
   );
 }

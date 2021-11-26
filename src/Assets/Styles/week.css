@@ -1,0 +1,59 @@
+.weekData {
+  width: calc(100% - 22rem);
+  height: 100vh;
+  overflow: auto;
+}
+
+.weekData #top {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 0 0 0;
+}
+
+.weekItem {
+  width: 10rem;
+  margin: 20px 10px;
+  padding: 0;
+  text-align: center;
+}
+
+.weekItem .img_container {
+  margin: 0 auto;
+  width: 60px;
+  height: 60px;
+}
+
+.todayStats {
+  margin: 0 0 0 70px;
+}
+
+.todayStats #windStatus,
+.todayStats #humidity,
+.todayStats #visibility,
+.todayStats #airPressure {
+  width: 20rem;
+  padding: 2px;
+  margin: 10px 40px 20px 0;
+  background: #1e213a;
+  text-align: center;
+}
+
+.todayStats #humidity progress[value] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 90%;
+  height: 8px;
+}
+
+.todayStats #humidity progress[value]::-webkit-progress-bar {
+  background-color: #e7e7eb;
+  border-radius: 80px;
+}
+
+.todayStats #humidity progress[value]::-webkit-progress-value {
+  background-color: #ffec65;
+  border-radius: 80px;
+}

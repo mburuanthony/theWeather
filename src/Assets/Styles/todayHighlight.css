@@ -1,0 +1,11 @@
+.todayData {
+  width: 22rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-image: url(../Images//Cloud-background.png);
+  background-position: center;
+  background-attachment: scroll;
+  background-repeat: repeat-x;
+}
