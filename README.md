@@ -20,5 +20,8 @@ $ yarn add package.json
 # Run the app
 $ yarn start
 ```
+<a href='https://mburu-antony-weather.netlify.app/' target='_blank'>
+  <img src='https://raw.githubusercontent.com/mburuanthony/theWeather/main/public/Capture.PNG' />
+</a>
 
 [mburuanthony](https://github.com/mburuanthony)
