@@ -81,3 +81,9 @@
   background: #3c47e9;
   color: #fff;
 }
+
+@media (max-width: 576px) {
+  .search_location form {
+    width: 100%;
+  }
+}

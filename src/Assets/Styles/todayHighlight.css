@@ -9,3 +9,9 @@
   background-attachment: scroll;
   background-repeat: repeat-x;
 }
+
+@media (max-width: 576px) {
+  .todayData {
+    width: 100%;
+  }
+}

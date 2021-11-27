@@ -33,6 +33,8 @@ function Search(props) {
       .then((res) => {
         setMetData(res?.data?.consolidated_weather);
         setTodayData(res?.data?.consolidated_weather[0]);
+        formRef.current.style.display = "none";
+        setSearchVal("");
       })
       .catch((err) => {
         console.log(err);

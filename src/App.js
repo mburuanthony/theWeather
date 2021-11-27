@@ -22,7 +22,7 @@ function App() {
     // get WOEID
     axios
       .get(
-        `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}`
+        `https://www.metaweather.com/api/location/search/?lattlong=${latitude},${longitude}/`
       )
       .then((res) => {
         setWoeid(res?.data[0]?.woeid);
