@@ -11,13 +11,13 @@ function Search(props) {
   const [locationWoeid, setLocationWoeid] = useState(44418);
   const formRef = useRef(null);
 
-  const submitSearch = (e) => {
+  async function submitSearch(e) {
     e.preventDefault();
 
     // get WOEID
-    axios
+    await axios
       .get(
-        `https://www.metaweather.com/api/location/search/?query=${searchVal}`
+        `https://cors-proxy-kelvin.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${searchVal}`
       )
       .then((res) => {
         setLocationTitle(res?.data[0]?.title);
@@ -28,18 +28,20 @@ function Search(props) {
       });
 
     // get location weather data... set today data... set met data
-    axios
-      .get(`https://www.metaweather.com/api/location/${locationWoeid}/`)
+    await axios
+      .get(
+        `https://cors-proxy-kelvin.herokuapp.com/https://www.metaweather.com/api/location/${locationWoeid}/`
+      )
       .then((res) => {
-        setMetData(res?.data?.consolidated_weather);
+        console.log(res);
         setTodayData(res?.data?.consolidated_weather[0]);
+        setMetData(res?.data?.consolidated_weather);
         formRef.current.style.display = "none";
-        setSearchVal("");
       })
       .catch((err) => {
         console.log(err);
       });
-  };
+  }
 
   return (
     <div className="search_location">

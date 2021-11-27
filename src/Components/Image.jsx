@@ -1,6 +1,6 @@
 import "../Assets/Styles/Image.css";
 import ClearImage from "../Assets/Images/Clear.png";
-import HailImage from "../Assets/Images/Clear.png";
+import HailImage from "../Assets/Images/Hail.png";
 import HeavyCloudImage from "../Assets/Images/HeavyCloud.png";
 import HeavyRainImage from "../Assets/Images/HeavyRain.png";
 import LightClodImage from "../Assets/Images/LightCloud.png";
@@ -23,10 +23,10 @@ function Image(props) {
             ? ShowerImage
             : weatherStateName === "Snow"
             ? SnowImage
-              ? weatherStateName === "Sleet"
-                ? SleetImage
-                : weatherStateName === "Hail"
-              : HailImage
+            : weatherStateName === "Sleet"
+            ? SleetImage
+            : weatherStateName === "Hail"
+            ? HailImage
             : weatherStateName === "Thunderstorm"
             ? ThunderImage
             : weatherStateName === "Heavy Rain"
