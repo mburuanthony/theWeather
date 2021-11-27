@@ -10,7 +10,7 @@ function App() {
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
   const [woeid, setWoeid] = useState(44418);
-  const [locationTitle, setLocationTitle] = useState("");
+  const [locationTitle, setLocationTitle] = useState("Nairobi");
 
   useEffect(() => {
     // get coordinates
