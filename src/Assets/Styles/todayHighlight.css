@@ -3,11 +3,13 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background-image: url(../Images//Cloud-background.png);
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background-image: url(../Images/Cloud-background.png);
+  background-blend-mode: color;
   background-position: center;
-  background-attachment: scroll;
-  background-repeat: repeat-x;
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 576px) {
