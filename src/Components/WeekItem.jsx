@@ -1,9 +1,8 @@
-import "../Assets/Styles/week.css";
-import { colors } from "../Assets/colors";
 import Image from "./Image";
+import { colors } from "../Assets/colors";
+import "../Assets/Styles/week.css";
 
-function WeekItem(props) {
-  const { date, weatherStateName, maxTemp, minTemp } = props;
+function WeekItem({ date, weathercode, maxTemp, minTemp }) {
   const { light, fontColor } = colors;
 
   return (
@@ -13,7 +12,7 @@ function WeekItem(props) {
     >
       <p>{new Date(date).toDateString()}</p>
       <div className="img_container">
-        <Image weatherStateName={weatherStateName} />
+        <Image weathercode={weathercode} />
       </div>
       <p style={{ display: "flex", justifyContent: "space-evenly" }}>
         <span>
