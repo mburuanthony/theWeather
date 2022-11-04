@@ -1,8 +1,15 @@
-import "../Assets/Styles/week.css";
 import { colors } from "../Assets/colors";
+import "../Assets/Styles/week.css";
 
-function TodayStats(props) {
-  const { todayData } = props;
+function TodayStats({
+  windSpeed,
+  windDIrection,
+  rainSum,
+  sunRise,
+  sunSet,
+  radiationSum,
+}) {
+  // const { todayData } = props;
   const { fontColor } = colors;
 
   const spanStyle = {
@@ -26,8 +33,8 @@ function TodayStats(props) {
         <div id="windStatus">
           <p>Wind status</p>
           <p>
-            <span style={spanStyle}>{Math.round(todayData?.wind_speed)}</span>
-            mph
+            <span style={spanStyle}>{Math.round(windSpeed) || 0}</span>
+            km/h
           </p>
           <p>
             <span
@@ -36,55 +43,50 @@ function TodayStats(props) {
                 borderRadius: 500,
                 margin: "0 6px 0 0",
                 padding: "2px",
-                transform: `rotate(${todayData?.wind_direction}deg)`,
+                transform: `rotate(${windDIrection}deg)`,
                 backgroundColor: "rgba(255, 255, 255, 0.3)",
                 color: "#fff",
               }}
             >
               navigation
             </span>
-            {todayData?.wind_direction_compass}
           </p>
         </div>
 
         <div id="humidity">
-          <p>Humidity</p>
+          <p>Rain</p>
           <p>
-            <span style={spanStyle}>{Math.round(todayData?.humidity)}</span>%
+            <span style={spanStyle}>{Math.round(rainSum) || 0}</span>
+            mm
           </p>
-          <p
-            style={{
-              width: "90%",
-              margin: "0 auto",
-              paddin: 0,
-              fontSize: "12px",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <span>0%</span>
-            <span>50%</span>
-            <span>100%</span>
-          </p>
-          <progress
-            max={100}
-            value={Math.round(todayData?.humidity)}
-          ></progress>
         </div>
 
         <div id="visibility">
-          <p>Visibility</p>
           <p>
-            <span style={spanStyle}>{Math.round(todayData?.visibility)}</span>
-            miles
+            <span>Sunsrise</span>
+            <br />
+            <span>
+              {`${new Date(sunRise).getHours()} : ${new Date(
+                sunRise
+              ).getMinutes()}` || ""}
+            </span>
+          </p>
+          <p>
+            <span>Sunset</span>
+            <br />
+            <span>
+              {`${new Date(sunSet).getHours()} : ${new Date(
+                sunSet
+              ).getMinutes()}` || ""}
+            </span>
           </p>
         </div>
 
         <div id="airPressure">
-          <p>Air Pressure</p>
+          <p>Solar Radiation</p>
           <p>
-            <span style={spanStyle}>{Math.round(todayData?.air_pressure)}</span>
-            mb
+            <span style={spanStyle}>{Math.round(radiationSum) || 0}</span>
+            MJ/m²
           </p>
         </div>
       </div>
