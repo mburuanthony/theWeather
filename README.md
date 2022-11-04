@@ -1,6 +1,6 @@
 ## weather app
 
-A weather information web app. Built with React Js, CSS and Google Material Icons. Data obtained from [open-meteo.com](https://api.open-meteo.com). The app provides location based weather info to users on providing location access. Data includes todays info and a forecast of the following 6 days. Locations are limited only to those provided by the [API](https://api.open-meteo.com).
+A weather information web app. Built with React Js, CSS and Google Material Icons. Data obtained from [open-meteo.com](https://api.open-meteo.com). The app provides location (default : Nairobi/Kenya) based weather info to users on providing location access. Data includes todays info and a forecast of the following 6 days. Locations are limited only to those provided by the [API](https://api.open-meteo.com).
 
 ```bash
 # Clone this repository
