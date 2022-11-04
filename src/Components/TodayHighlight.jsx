@@ -1,31 +1,26 @@
-import { colors } from "../Assets/colors";
-import "../Assets/Styles/todayHighlight.css";
-import Search from "./Search";
 import Image from "./Image";
 import TodayInfo from "./TodayInfo";
+import { colors } from "../Assets/colors";
+import "../Assets/Styles/todayHighlight.css";
 
-function TodayHighlight(props) {
-  const {
-    todayData,
-    locationTitle,
-    setLocationTitle,
-    setTodayData,
-    setMetData,
-  } = props;
+function TodayHighlight({
+  currentWeather,
+  locationTitle,
+  locationCountry,
+  timeZoneData,
+}) {
   const { light } = colors;
 
   return (
     <div className="todayData" style={{ backgroundColor: light }}>
-      <Search
-        setLocationTitle={setLocationTitle}
-        setTodayData={setTodayData}
-        setMetData={setMetData}
-      />
-      <Image weatherStateName={todayData?.weather_state_name} />
+      <Image weathercode={currentWeather?.weathercode} />
+
       <TodayInfo
-        maxTemp={Math.round(todayData?.max_temp)}
-        weatherStateName={todayData?.weather_state_name}
+        maxTemp={Math.round(currentWeather?.temperature)}
         locationTitle={locationTitle}
+        locationCountry={locationCountry}
+        timeZone={timeZoneData.timezone}
+        timeZoneAbbr={timeZoneData.timezone_abbreviation}
       />
     </div>
   );
