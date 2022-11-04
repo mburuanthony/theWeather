@@ -1,8 +1,13 @@
-import "../Assets/Styles/todayInfo.css";
 import { colors } from "../Assets/colors";
+import "../Assets/Styles/todayInfo.css";
 
-function TodayInfo(props) {
-  const { maxTemp, weatherStateName, locationTitle } = props;
+function TodayInfo({
+  maxTemp,
+  locationTitle,
+  locationCountry,
+  timeZone,
+  timeZoneAbbr,
+}) {
   const { textColor } = colors;
 
   return (
@@ -14,20 +19,34 @@ function TodayInfo(props) {
             color: "#fff",
           }}
         >
-          {maxTemp}
+          {maxTemp || 0}
         </span>
         &nbsp;
         <sup>O</sup>C
       </p>
-      <span style={{ fontSize: "1.2rem" }}>{weatherStateName}</span>
-      <p style={{ fontSize: "1.2rem" }}>Today . {new Date().toDateString()}</p>
+      <p style={{ fontSize: "1.2rem" }}>
+        Today
+        <span style={{ margin: "0 10px 0 10px", fontSize: "1.85rem" }}>.</span>
+        {new Date().toDateString()}
+      </p>
+      <p
+        style={{
+          fontSize: "1rem",
+        }}
+      >
+        <span style={{ marginLeft: "10px" }}>{timeZone || "Nairobi"}</span>
+        <span style={{ marginLeft: "10px", fontSize: "1.85rem" }}>.</span>
+        <span style={{ marginLeft: "10px" }}>{timeZoneAbbr || "Kenya"}</span>
+      </p>
       <p
         style={{
           fontSize: "1rem",
         }}
       >
         <span className="material-icons">place</span>
-        <span style={{ margin: "0 0 0 10px" }}>{locationTitle}</span>
+        <span style={{ marginLeft: "10px" }}>{locationTitle || "Nairobi"}</span>
+        <span style={{ marginLeft: "10px", fontSize: "1.85rem" }}>.</span>
+        <span style={{ marginLeft: "10px" }}>{locationCountry || "Kenya"}</span>
       </p>
     </div>
   );
