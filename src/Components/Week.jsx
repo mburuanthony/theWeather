@@ -1,27 +1,44 @@
-import { colors } from "../Assets/colors";
-import "../Assets/Styles/week.css";
 import WeekItem from "./WeekItem";
 import TodayStats from "./TodayStats";
+import { colors } from "../Assets/colors";
+import "../Assets/Styles/week.css";
 
-function Week(props) {
-  const { weekData, todayData } = props;
+function Week({
+  tempMin,
+  tempMax,
+  weatherCode,
+  dates,
+  windSpeed,
+  windDIrection,
+  rainSum,
+  sunRise,
+  sunSet,
+  radiationSum,
+}) {
   const { dark } = colors;
 
   return (
     <div className="weekData" style={{ backgroundColor: dark }}>
       <div id="top">
-        {weekData.map((item) => (
+        {tempMin?.map((item, index) => (
           <WeekItem
-            key={item?.id}
-            date={item?.applicable_date}
-            weatherStateName={item?.weather_state_name}
-            maxTemp={item?.max_temp}
-            minTemp={item?.min_temp}
+            key={index}
+            date={dates[index]}
+            weathercode={weatherCode[index]}
+            maxTemp={tempMax[index]}
+            minTemp={tempMin[index]}
           />
         ))}
       </div>
 
-      <TodayStats todayData={todayData} />
+      <TodayStats
+        windSpeed={windSpeed}
+        windDIrection={windDIrection}
+        rainSum={rainSum}
+        sunRise={sunRise}
+        sunSet={sunSet}
+        radiationSum={radiationSum}
+      />
     </div>
   );
 }
